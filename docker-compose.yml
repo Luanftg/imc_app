@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  flutter_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./build/web:/imc_app/build/web
+
+  apache:
+    image: httpd:latest
+    ports:
+      - '80:80'
+    volumes:
+      - ./build/web:/usr/local/apache2/htdocs
